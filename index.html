@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corsi IDA (Serali) - IIS Gregorio Mendel</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* Hero Carousel Styles */
+        /* --- CAROSELLO HERO --- */
         .hero-section {
             position: relative;
             background-color: #0f172a;
             overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .hero-bg-slide {
@@ -40,22 +47,81 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
             z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
+            width: 100%;
         }
 
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        /* --- TABELLE --- */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid #e5e7eb;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        th {
+            padding: 14px 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            background-color: #f0fdf4; /* emerald-50 */
+            color: #065f46; /* emerald-800 */
+            border-bottom: 3px solid #10b981;
+        }
+        
+        /* Prima colonna allineata a sinistra */
+        th:first-child, td:first-child {
+            text-align: left;
+            padding-left: 1.5rem;
+            min-width: 200px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tr:last-child td {
+            font-weight: 800;
+            background-color: #ecfdf5;
+            border-bottom: none;
+        }
+
+        /* Colori Header Tabelle */
+        .header-prof th { background-color: #d1fae5; color: #065f46; }
+        .header-tecn th { background-color: #e0f2fe; color: #075985; border-bottom-color: #0ea5e9; }
+
+        /* --- ANIMAZIONI --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
         .stagger-1 { transition-delay: 0.1s; }
         .stagger-2 { transition-delay: 0.2s; }
         .stagger-3 { transition-delay: 0.3s; }
 
+        /* MENU MOBILE */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -64,13 +130,14 @@
             transform: translateX(0);
         }
 
+        /* VIDEO */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; 
             height: 0;
             overflow: hidden;
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         .video-container iframe {
             position: absolute;
@@ -79,78 +146,75 @@
             width: 100%;
             height: 100%;
         }
-        
-        .subject-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .subject-list li::before {
-            content: "•";
-            color: #059669;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
     <!-- Header / Navbar -->
-    <nav class="fixed w-full z-50 bg-white border-b border-slate-200 shadow-sm">
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-24 items-center">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="bg-emerald-600 p-2 rounded-lg">
-                        <i data-lucide="sprout" class="text-white w-8 h-8"></i>
+                    <div class="bg-emerald-600 p-2 rounded-lg shadow-md">
+                        <i data-lucide="sprout" class="text-white w-6 h-6"></i>
                     </div>
                     <div>
                         <span class="font-bold text-xl tracking-tight text-emerald-800 uppercase block leading-none">IIS Mendel</span>
-                        <span class="text-xs text-slate-500 font-semibold tracking-widest uppercase">Istruzione degli Adulti</span>
+                        <span class="text-[10px] text-slate-500 font-bold tracking-widest uppercase">Istruzione degli Adulti</span>
                     </div>
                 </div>
+                
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 text-sm font-medium items-center">
                     <a href="#organizzazione" class="hover:text-emerald-600 transition-colors text-slate-600">Struttura</a>
                     <a href="#requisiti" class="hover:text-emerald-600 transition-colors text-slate-600">Requisiti</a>
-                    <a href="#materie" class="hover:text-emerald-600 transition-colors text-slate-600">Materie</a>
+                    <a href="#materie" class="hover:text-emerald-600 transition-colors text-slate-600">Quadri Orari</a>
                     <a href="#faq" class="hover:text-emerald-600 transition-colors text-slate-600">FAQ</a>
-                    <a href="mailto:ida@agrariomendel.it" class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition shadow-md font-bold">Contatta Referente</a>
+                    <a href="mailto:ida@agrariomendel.it?subject=Richiesta%20Informazioni%20Corso%20Serale%20IDA" class="bg-emerald-600 text-white px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition shadow-lg hover:shadow-emerald-200/50 font-semibold flex items-center">
+                        <i data-lucide="mail" class="w-4 h-4 mr-2"></i> Contatta Referente
+                    </a>
                 </div>
+                
                 <!-- Mobile Button -->
-                <button class="md:hidden text-slate-600 p-2" onclick="toggleMobileMenu()">
-                    <i data-lucide="menu" class="w-8 h-8"></i>
+                <button class="md:hidden text-slate-600 p-2 focus:outline-none" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Navigation -->
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white md:hidden">
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white md:hidden shadow-2xl">
         <div class="p-6 h-full flex flex-col">
             <div class="flex justify-between items-center mb-12">
-                <span class="font-bold text-xl text-emerald-800 uppercase">Menu</span>
+                <span class="font-bold text-xl text-emerald-800 uppercase tracking-tighter">Menu</span>
                 <button onclick="toggleMobileMenu()" class="p-2 text-slate-600">
                     <i data-lucide="x" class="w-8 h-8"></i>
                 </button>
             </div>
-            <div class="flex flex-col space-y-8 text-2xl font-semibold text-slate-800 flex-grow">
-                <a href="#organizzazione" onclick="toggleMobileMenu()">Struttura</a>
-                <a href="#requisiti" onclick="toggleMobileMenu()">Requisiti</a>
-                <a href="#materie" onclick="toggleMobileMenu()">Materie</a>
-                <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
-                <a href="mailto:ida@agrariomendel.it" onclick="toggleMobileMenu()" class="text-emerald-600">Contatta Referente</a>
+            <div class="flex flex-col space-y-6 text-xl font-semibold text-slate-800 flex-grow">
+                <a href="#organizzazione" onclick="toggleMobileMenu()" class="border-b border-slate-100 pb-4">Struttura del Corso</a>
+                <a href="#requisiti" onclick="toggleMobileMenu()" class="border-b border-slate-100 pb-4">Requisiti</a>
+                <a href="#materie" onclick="toggleMobileMenu()" class="border-b border-slate-100 pb-4">Quadri Orari</a>
+                <a href="#faq" onclick="toggleMobileMenu()" class="border-b border-slate-100 pb-4">FAQ</a>
+                <a href="mailto:ida@agrariomendel.it?subject=Richiesta%20Informazioni%20Corso%20Serale%20IDA" onclick="toggleMobileMenu()" class="text-emerald-600 flex items-center">
+                    <i data-lucide="mail" class="w-5 h-5 mr-3"></i> Contatta Referente
+                </a>
+            </div>
+            <div class="text-center text-slate-400 text-xs uppercase tracking-widest pb-4">
+                IIS Gregorio Mendel - Villa Cortese
             </div>
         </div>
     </div>
 
     <!-- Hero Section con Carosello -->
-    <section class="hero-section relative min-h-screen flex items-center justify-center pt-24">
+    <section class="hero-section">
         <!-- Background Slides -->
-        <!-- 1. CAMPO AL TRAMONTO (Immagine corretta) -->
+        <!-- 1. FOTO CAMPO AL TRAMONTO (IMMAGINE CORRETTA) -->
         <div class="hero-bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
         
-        <!-- 2-9. Immagini caricate dall'utente -->
+        <!-- 2-9. Immagini Utente (placeholder 1.jpg - 8.jpg) -->
         <div class="hero-bg-slide" style="background-image: url('1.jpg');"></div>
         <div class="hero-bg-slide" style="background-image: url('2.jpg');"></div>
         <div class="hero-bg-slide" style="background-image: url('3.jpg');"></div>
@@ -160,143 +224,161 @@
         <div class="hero-bg-slide" style="background-image: url('7.jpg');"></div>
         <div class="hero-bg-slide" style="background-image: url('8.jpg');"></div>
         
-        <!-- Overlay Scuro -->
+        <!-- Overlay -->
         <div class="hero-overlay"></div>
 
+        <!-- Contenuto Hero -->
         <div class="max-w-6xl mx-auto text-center px-4 hero-content text-white">
-            <h1 class="reveal stagger-1 text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight uppercase drop-shadow-lg">CORSI IDA (SERALI)<br><span class="text-emerald-400">IIS MENDEL</span></h1>
+            <h1 class="reveal stagger-1 text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight uppercase drop-shadow-lg tracking-tight">
+                CORSI IDA (SERALI)<br><span class="text-emerald-400">IIS MENDEL</span>
+            </h1>
             <p class="reveal stagger-2 text-lg md:text-xl lg:text-2xl mb-12 text-slate-100 font-light max-w-4xl mx-auto leading-relaxed drop-shadow-md">
                 Il corso è rivolto a tutti coloro che per motivi di lavoro, famiglia o personali intendono riprendere gli studi per acquisire un diploma senza sacrificare la propria professione.
             </p>
-            <div class="reveal stagger-3 flex flex-col sm:flex-row justify-center gap-5">
-                <div class="px-8 py-4 bg-emerald-600 text-white rounded-lg font-bold text-lg shadow-xl cursor-default uppercase tracking-wide border-2 border-emerald-500">
+            <div class="reveal stagger-3 flex justify-center">
+                <!-- BOX VERDE FISSO -->
+                <div class="px-8 py-5 bg-emerald-600 text-white rounded-xl font-bold text-lg md:text-xl shadow-2xl cursor-default uppercase tracking-wide border-2 border-emerald-400 transform hover:scale-105 transition-transform duration-300">
                     ISCRIZIONI 2026/27 aperte fino al 16 ottobre 2026
                 </div>
             </div>
-            <p class="mt-8 text-sm text-emerald-200 font-medium reveal stagger-3">D.P.R. 263/12 e Linee guida MIUR del 10 aprile 2014</p>
+            <p class="mt-8 text-xs md:text-sm text-emerald-200/80 font-medium reveal stagger-3 tracking-widest uppercase">
+                D.P.R. 263/12 e Linee guida MIUR del 10 aprile 2014
+            </p>
         </div>
     </section>
 
-    <!-- Organizzazione Didattica e Periodi -->
+    <!-- Sezione Struttura del Corso (Icone Dritte, No Righe) -->
     <section id="organizzazione" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 uppercase">La Struttura del Corso</h2>
-                <p class="text-slate-600 max-w-3xl mx-auto text-lg">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 uppercase tracking-tight">La Struttura del Corso</h2>
+                <div class="w-24 h-1.5 bg-emerald-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed">
                     I cinque anni dei corsi serali sono suddivisi in tre periodi didattici, conformemente alla riorganizzazione dell’istruzione degli adulti.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- I Periodo - NON ATTIVO -->
-                <div class="reveal stagger-1 p-8 bg-slate-100 rounded-xl border border-slate-200 relative">
-                    <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-4 py-2 uppercase rounded-bl-xl">Non Attivo in Sede</div>
-                    <div class="w-16 h-16 bg-slate-300 text-slate-600 rounded-lg mb-6 flex items-center justify-center text-3xl font-bold">1</div>
+                <div class="reveal stagger-1 p-8 bg-slate-50 rounded-2xl border border-slate-200 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-4 py-1.5 uppercase rounded-bl-xl shadow-sm">Non Attivo in Sede</div>
+                    <div class="w-16 h-16 bg-slate-200 text-slate-600 rounded-2xl mb-6 flex items-center justify-center text-3xl font-bold shadow-inner">1</div>
                     <h3 class="text-2xl font-bold mb-3 text-slate-800">Primo Periodo</h3>
                     <p class="text-slate-600 text-sm mb-6 font-semibold">Corrisponde ai primi 2 anni (classe prima e seconda).</p>
-                    <div class="bg-white border-l-4 border-red-500 p-4 shadow-sm">
-                        <p class="text-sm text-red-800 mb-2"><strong>ATTENZIONE:</strong> Questo periodo non è attivo presso il nostro Istituto.</p>
+                    <div class="bg-white border-l-4 border-red-500 p-5 rounded-r-lg shadow-sm">
+                        <p class="text-sm text-red-700 mb-2 font-bold">ATTENZIONE: Questo periodo non è attivo presso il nostro Istituto.</p>
                         <p class="text-sm text-slate-600 mb-4">Gli interessati devono rivolgersi al <strong>CPIA 4 di Legnano</strong>.</p>
-                        <div class="pt-4 border-t border-slate-100">
-                            <p class="text-xs font-bold text-slate-500 uppercase mb-1">Importante</p>
-                            <p class="text-sm text-slate-700">Contattare PRIMA il referente IDA Prof. Albè: <a href="mailto:ida@agrariomendel.it" class="text-emerald-600 hover:underline font-bold">ida@agrariomendel.it</a></p>
+                        <div class="pt-3 border-t border-slate-100">
+                            <p class="text-xs font-bold text-slate-400 uppercase mb-1">Prima di contattare il CPIA:</p>
+                            <p class="text-sm text-slate-700">Scrivere al referente IDA Prof. Albè: <a href="mailto:ida@agrariomendel.it" class="text-emerald-600 hover:underline font-bold block mt-1">ida@agrariomendel.it</a></p>
                         </div>
                     </div>
                 </div>
 
                 <!-- II Periodo -->
-                <div class="reveal stagger-2 p-8 bg-white rounded-xl border-2 border-emerald-500 shadow-xl transform md:-translate-y-4 z-10">
-                    <div class="absolute top-0 right-0 bg-emerald-600 text-white text-xs font-bold px-4 py-2 uppercase rounded-bl-xl">Attivo</div>
-                    <div class="w-16 h-16 bg-emerald-600 text-white rounded-lg mb-6 flex items-center justify-center text-3xl font-bold">2</div>
+                <div class="reveal stagger-2 p-8 bg-white rounded-2xl border-2 border-emerald-500 shadow-xl relative z-10 transform md:-translate-y-4">
+                    <div class="absolute top-0 right-0 bg-emerald-600 text-white text-xs font-bold px-4 py-1.5 uppercase rounded-bl-xl shadow-sm">Attivo</div>
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-2xl mb-6 flex items-center justify-center text-3xl font-bold">2</div>
                     <h3 class="text-2xl font-bold mb-3 text-emerald-900">Secondo Periodo</h3>
-                    <p class="text-slate-600 mb-6 font-medium">Corrisponde al <strong>secondo biennio</strong> (classe terza e quarta).</p>
+                    <p class="text-slate-700 mb-4 font-medium">Corrisponde al <strong>secondo biennio</strong> (classe terza e quarta).</p>
                     <p class="text-sm text-slate-500 leading-relaxed">Corso professionale indirizzo: Servizi per l’agricoltura e sviluppo rurale, opzione valorizzazione dei prodotti nazionali e del territorio.</p>
                 </div>
 
                 <!-- III Periodo -->
-                <div class="reveal stagger-3 p-8 bg-slate-100 rounded-xl border border-slate-200 relative">
-                    <div class="absolute top-0 right-0 bg-emerald-600 text-white text-xs font-bold px-4 py-2 uppercase rounded-bl-xl">Attivo</div>
-                    <div class="w-16 h-16 bg-emerald-600 text-white rounded-lg mb-6 flex items-center justify-center text-3xl font-bold">3</div>
+                <div class="reveal stagger-3 p-8 bg-slate-50 rounded-2xl border border-emerald-200 relative">
+                    <div class="absolute top-0 right-0 bg-emerald-600 text-white text-xs font-bold px-4 py-1.5 uppercase rounded-bl-xl shadow-sm">Attivo</div>
+                    <div class="w-16 h-16 bg-emerald-600 text-white rounded-2xl mb-6 flex items-center justify-center text-3xl font-bold shadow-lg">3</div>
                     <h3 class="text-2xl font-bold mb-3 text-emerald-900">Terzo Periodo</h3>
-                    <p class="text-slate-600 mb-6 font-medium">Corrisponde all’<strong>ultimo anno</strong> (classe quinta).</p>
-                    <p class="text-sm text-slate-500 leading-relaxed">Preparazione finale per il conseguimento del Diploma di Perito Agrario.</p>
+                    <p class="text-slate-700 mb-4 font-medium">Corrisponde all’<strong>ultimo anno</strong> (classe quinta).</p>
+                    <p class="text-sm text-slate-500 leading-relaxed">Preparazione finale per il conseguimento del Diploma di Perito Agrario e accesso all'Esame di Stato.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Info Pratiche (Orari, Assenze, Crediti) -->
-    <section id="info-pratiche" class="py-24 bg-slate-100">
+    <!-- Info Pratiche -->
+    <section id="info-pratiche" class="py-24 bg-slate-50 border-y border-slate-200">
         <div class="max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-16 items-start">
+                
+                <!-- Colonna SX: Info -->
                 <div class="reveal stagger-1">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-8 uppercase">Info Pratiche e Crediti</h2>
-                    <p class="text-slate-700 mb-8 leading-relaxed text-lg">
-                        L'articolazione del corso è costruita sulle esigenze di uno studente lavoratore.
-                        Ha come obiettivo la diminuzione della dispersione scolastica con maggior attenzione alla flessibilità.
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6 uppercase">Info Pratiche e Crediti</h2>
+                    <p class="text-slate-600 mb-8 leading-relaxed text-lg">
+                        L'articolazione del corso è costruita sulle esigenze di uno studente lavoratore. Ha come obiettivo la diminuzione della dispersione scolastica con maggior attenzione alla flessibilità.
                     </p>
                     
-                    <div class="space-y-6">
-                        <div class="flex items-start bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                            <i data-lucide="clock" class="w-8 h-8 text-emerald-600 mr-5 mt-1"></i>
+                    <div class="space-y-4">
+                        <div class="flex p-5 bg-white rounded-xl shadow-sm border border-slate-100">
+                            <div class="mr-5 mt-1 bg-emerald-100 p-2 rounded-lg text-emerald-600">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-lg text-slate-900 mb-1">Orario Lezioni</h4>
                                 <p class="text-slate-600">Dal lunedì al venerdì, dalle <strong>18:15 alle 22:35</strong>.</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                            <i data-lucide="calendar-check" class="w-8 h-8 text-emerald-600 mr-5 mt-1"></i>
+                        <div class="flex p-5 bg-white rounded-xl shadow-sm border border-slate-100">
+                            <div class="mr-5 mt-1 bg-emerald-100 p-2 rounded-lg text-emerald-600">
+                                <i data-lucide="calendar-check" class="w-6 h-6"></i>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-lg text-slate-900 mb-1">Frequenza e Assenze</h4>
-                                <p class="text-slate-600">E’ tollerato il <strong>25%</strong> di assenza per motivi di salute e il <strong>25%</strong> per motivi di lavoro certificati.</p>
+                                <p class="text-slate-600 text-sm">Tollerato il <strong>25%</strong> di assenza per salute e il <strong>25%</strong> per motivi di lavoro certificati.</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                            <i data-lucide="award" class="w-8 h-8 text-emerald-600 mr-5 mt-1"></i>
+                        <div class="flex p-5 bg-white rounded-xl shadow-sm border border-slate-100">
+                            <div class="mr-5 mt-1 bg-emerald-100 p-2 rounded-lg text-emerald-600">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-lg text-slate-900 mb-1">Riconoscimento Crediti</h4>
-                                <p class="text-slate-600 text-sm mb-3">Una commissione valuta il percorso scolastico e lavorativo per ridurre le ore di frequenza.</p>
-                                <ul class="text-sm text-slate-500 list-disc pl-4 space-y-1">
-                                    <li>Crediti formali (diplomi/certificati)</li>
-                                    <li>Crediti informali (attività lavorative)</li>
-                                    <li>Crediti non formali (interessi coerenti)</li>
+                                <p class="text-slate-600 text-sm mb-2">Valutazione percorso per ridurre le ore:</p>
+                                <ul class="text-xs text-slate-500 list-disc pl-4 space-y-1">
+                                    <li><strong>Formali:</strong> diplomi/certificati</li>
+                                    <li><strong>Informali:</strong> attività lavorative</li>
+                                    <li><strong>Non formali:</strong> interessi coerenti</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="reveal stagger-2 bg-emerald-900 text-white p-10 rounded-2xl shadow-2xl" id="requisiti">
-                    <h3 class="text-2xl font-bold mb-8 border-b border-emerald-700 pb-4 text-emerald-100">Requisiti d'Ammissione</h3>
-                    <ul class="space-y-8">
+                <!-- Colonna DX: Requisiti -->
+                <div class="reveal stagger-2 bg-emerald-900 text-white p-10 rounded-3xl shadow-2xl relative overflow-hidden" id="requisiti">
+                    <!-- Decorazione sfondo -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    
+                    <h3 class="text-2xl font-bold mb-8 border-b border-emerald-700 pb-4 text-emerald-50 relative z-10">Requisiti d'Ammissione</h3>
+                    <ul class="space-y-6 relative z-10">
                         <li class="flex items-start">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 mr-4 mt-1 flex-shrink-0"></i>
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 mr-4 mt-0.5 flex-shrink-0"></i>
                             <div>
                                 <strong class="block text-lg text-white mb-1">Terza Media</strong>
-                                <p class="text-emerald-200 text-sm">Ammissione al 1° livello (classe 1^/2^ - vedi nota CPIA).</p>
+                                <p class="text-emerald-200/80 text-sm">Ammissione al 1° livello (classe 1^/2^ - vedi nota CPIA).</p>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 mr-4 mt-1 flex-shrink-0"></i>
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 mr-4 mt-0.5 flex-shrink-0"></i>
                             <div>
-                                <strong class="block text-lg text-white mb-1">Istituto Superiore Interrotto</strong>
-                                <p class="text-emerald-200 text-sm">Ammissione al triennio (3^, 4^ o 5^) dopo riconoscimento crediti ed eventuali integrazioni.</p>
+                                <strong class="block text-lg text-white mb-1">Superiori Interrotte</strong>
+                                <p class="text-emerald-200/80 text-sm">Ammissione al triennio (3^, 4^ o 5^) dopo riconoscimento crediti.</p>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 mr-4 mt-1 flex-shrink-0"></i>
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 mr-4 mt-0.5 flex-shrink-0"></i>
                             <div>
-                                <strong class="block text-lg text-white mb-1">Tecnico/Prof. Agrario</strong>
-                                <p class="text-emerald-200 text-sm">Ammissione alla classe successiva all'ultima promozione ottenuta (anche se molto tempo fa).</p>
+                                <strong class="block text-lg text-white mb-1">Tecnico Agrario Pregresso</strong>
+                                <p class="text-emerald-200/80 text-sm">Ammissione alla classe successiva all'ultima promozione (anche se datata).</p>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <i data-lucide="users" class="w-6 h-6 text-emerald-400 mr-4 mt-1 flex-shrink-0"></i>
+                            <i data-lucide="users" class="w-6 h-6 text-emerald-400 mr-4 mt-0.5 flex-shrink-0"></i>
                             <div>
-                                <strong class="block text-lg text-white mb-1">A Chi è Rivolto</strong>
-                                <p class="text-emerald-200 text-sm">Corso aperto ad adulti lavoratori, disoccupati o non occupati.</p>
+                                <strong class="block text-lg text-white mb-1">Destinatari</strong>
+                                <p class="text-emerald-200/80 text-sm">Adulti lavoratori, disoccupati o non occupati.</p>
                             </div>
                         </li>
                     </ul>
@@ -305,35 +387,83 @@
         </div>
     </section>
 
-    <!-- Materie del Corso -->
+    <!-- QUADRI ORARI DETTAGLIATI (DALLE IMMAGINI) -->
     <section id="materie" class="py-24 bg-white">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 uppercase text-slate-900">Piano di Studi - Classe Terza</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="border-2 border-slate-100 rounded-xl p-8 bg-white shadow-sm">
-                    <h3 class="text-xl font-bold text-emerald-700 mb-6 uppercase tracking-wider flex items-center">
-                        <i data-lucide="book-open" class="mr-3 w-6 h-6"></i> Area Comune
-                    </h3>
-                    <ul class="subject-list text-slate-700 space-y-3 text-lg">
-                        <li>Italiano</li>
-                        <li>Storia</li>
-                        <li>Lingua Inglese</li>
-                        <li>Matematica</li>
-                    </ul>
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-6 uppercase text-slate-900">Quadri Orari e Discipline</h2>
+            <p class="text-center text-slate-600 mb-16 max-w-2xl mx-auto">Dettaglio delle ore settimanali per i percorsi Professionali e Tecnici suddivisi per periodi didattici.</p>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                
+                <!-- TABELLA 1: ISTRUZIONE PROFESSIONALE -->
+                <div class="reveal stagger-1">
+                    <h3 class="text-xl font-bold text-emerald-800 mb-4 border-b-2 border-emerald-500 pb-2 inline-block">ISTRUZIONE PROFESSIONALE</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr class="header-prof">
+                                    <th>Materia</th>
+                                    <th>1° P.D.<br>(3PS)</th>
+                                    <th>2° P.D.<br>(4PS)</th>
+                                    <th>3° P.D.<br>(5PS)</th>
+                                    <th>Tot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Italiano</td><td>3</td><td>3</td><td>3</td><td>9</td></tr>
+                                <tr><td>Storia</td><td>1</td><td>1</td><td>1</td><td>3</td></tr>
+                                <tr><td>Inglese</td><td>2</td><td>2</td><td>2</td><td>6</td></tr>
+                                <tr><td>Matematica</td><td>3</td><td>3</td><td>3</td><td>9</td></tr>
+                                <tr><td>Lab. Biologia/Chimica</td><td>2</td><td>2</td><td>/</td><td>4</td></tr>
+                                <tr><td>Tec. Allevamento Veg./Anim.</td><td>/</td><td>/</td><td>3(1)</td><td>3</td></tr>
+                                <tr><td>Tec. Prod. Veg./Zootecniche</td><td>3(2)</td><td>3(2)</td><td>/</td><td>6</td></tr>
+                                <tr><td>Agronomia Territoriale</td><td>2(1)</td><td>/</td><td>2(1)</td><td>6</td></tr>
+                                <tr><td>Economia Agr. e Sviluppo</td><td>/</td><td>/</td><td>2(1)</td><td>2</td></tr>
+                                <tr><td>Econ. Agraria e Legislazione</td><td>2(1)</td><td>2(1)</td><td>/</td><td>4</td></tr>
+                                <tr><td>Valor. Attività Prod.</td><td>2</td><td>2</td><td>3</td><td>7</td></tr>
+                                <tr><td>Econ. Mercati e Marketing</td><td>/</td><td>/</td><td>2</td><td>2</td></tr>
+                                <tr><td>Sociol. Rur. e Stor. Agr.</td><td>/</td><td>/</td><td>1</td><td>1</td></tr>
+                                <tr><td>Agricoltura Sost. e Bio.</td><td>2</td><td>2</td><td>/</td><td>4</td></tr>
+                                <tr style="background-color: #fef9c3; font-weight: bold;"><td>TOTALE ORE</td><td>22</td><td>22</td><td>22</td><td>66</td></tr>
+                                <tr style="font-style: italic; color: #64748b;"><td>Di cui compresenza</td><td>6</td><td>4</td><td>3</td><td>13</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="border-2 border-slate-100 rounded-xl p-8 bg-white shadow-sm">
-                    <h3 class="text-xl font-bold text-emerald-700 mb-6 uppercase tracking-wider flex items-center">
-                        <i data-lucide="flask-conical" class="mr-3 w-6 h-6"></i> Area Indirizzo
-                    </h3>
-                    <ul class="subject-list text-slate-700 space-y-3 text-lg">
-                        <li>Biologia applicata</li>
-                        <li>Chimica applicata e processi di trasformazione</li>
-                        <li>Tecniche di allevamento vegetale ed animale</li>
-                        <li>Agronomia territoriale ed ecosistemi forestali</li>
-                        <li>Economia agraria e dello sviluppo territoriale</li>
-                        <li>Valorizzazione attività produttive e legislazione</li>
-                    </ul>
+
+                <!-- TABELLA 2: ISTRUZIONE TECNICA -->
+                <div class="reveal stagger-2">
+                    <h3 class="text-xl font-bold text-sky-800 mb-4 border-b-2 border-sky-500 pb-2 inline-block">ISTRUZIONE TECNICA</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr class="header-tecn">
+                                    <th>Materia</th>
+                                    <th>1° P.D.<br>(3TS)</th>
+                                    <th>2° P.D.<br>(4TS)</th>
+                                    <th>3° LIV.<br>(5TS)</th>
+                                    <th>Tot</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Italiano</td><td>3</td><td>3</td><td>3</td><td>9</td></tr>
+                                <tr><td>Storia</td><td>1</td><td>1</td><td>1</td><td>3</td></tr>
+                                <tr><td>Inglese</td><td>2</td><td>2</td><td>2</td><td>6</td></tr>
+                                <tr><td>Matematica</td><td>3</td><td>3</td><td>2</td><td>8</td></tr>
+                                <tr><td>Prod. Animale</td><td>2</td><td>2</td><td>2</td><td>6</td></tr>
+                                <tr><td>Prod. Vegetale</td><td>4(2)</td><td>3(1)</td><td>3(1)</td><td>10</td></tr>
+                                <tr><td>Trasform. dei Prodotti</td><td>2(1)</td><td>2(1)</td><td>2(1)</td><td>6</td></tr>
+                                <tr><td>Economia, Estimo</td><td>2(1)</td><td>2(2)</td><td>3(2)</td><td>7</td></tr>
+                                <tr><td>Biotecnologie Agr.</td><td>1(1)</td><td>2(1)</td><td>0</td><td>3</td></tr>
+                                <tr><td>Genio Rurale</td><td>2(2)</td><td>2(1)</td><td>2</td><td>6</td></tr>
+                                <tr><td>G.A.T.</td><td>/</td><td>/</td><td>2</td><td>2</td></tr>
+                                <tr style="background-color: #fef9c3; font-weight: bold;"><td>TOTALE ORE</td><td>22</td><td>22</td><td>22</td><td>66</td></tr>
+                                <tr style="font-style: italic; color: #64748b;"><td>Di cui compresenza</td><td>7</td><td>6</td><td>4</td><td>17</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -408,20 +538,26 @@
             </div>
 
             <!-- Docs Stranieri -->
-            <div class="reveal stagger-3 mt-16 p-8 bg-emerald-50 rounded-xl border border-emerald-100">
-                <h3 class="text-xl font-bold mb-6 flex items-center text-emerald-900">
-                    <i data-lucide="globe" class="mr-3 text-emerald-600"></i> Studenti Stranieri
-                </h3>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://agrariomendel.edu.it/allegati/all/87-nota-prot-n-465-del-27-gennaio-2012.pdf" target="_blank" class="px-6 py-3 bg-white border border-slate-200 rounded-lg text-sm font-bold hover:text-emerald-600 transition shadow-sm text-center flex items-center justify-center">
-                        <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Nota prot. 465
-                    </a>
-                    <a href="https://agrariomendel.edu.it/allegati/all/88-istanza-rilascio-dichiarazione-di-equipollenza.pdf" target="_blank" class="px-6 py-3 bg-white border border-slate-200 rounded-lg text-sm font-bold hover:text-emerald-600 transition shadow-sm text-center flex items-center justify-center">
-                        <i data-lucide="download" class="w-4 h-4 mr-2"></i> Istanza Equipollenza
-                    </a>
-                    <a href="https://agrariomendel.edu.it/allegati/all/89-documenti-equipollenza-ii-grado.pdf" target="_blank" class="px-6 py-3 bg-white border border-slate-200 rounded-lg text-sm font-bold hover:text-emerald-600 transition shadow-sm text-center flex items-center justify-center">
-                        <i data-lucide="paperclip" class="w-4 h-4 mr-2"></i> Documenti II Grado
-                    </a>
+            <div class="reveal stagger-3 mt-16 p-8 bg-emerald-50 rounded-xl border border-emerald-100 shadow-sm text-center md:text-left">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="bg-emerald-600 p-4 rounded-full text-white">
+                        <i data-lucide="globe" class="w-8 h-8"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-bold text-emerald-900 mb-1">Studenti Stranieri</h3>
+                        <p class="text-sm text-emerald-700 mb-4">Moduli ufficiali per regolarizzare il titolo estero ed avviare l'equipollenza.</p>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <a href="https://agrariomendel.edu.it/allegati/all/87-nota-prot-n-465-del-27-gennaio-2012.pdf" target="_blank" class="px-4 py-2 bg-white border border-emerald-200 rounded text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition shadow-sm flex items-center justify-center">
+                                <i data-lucide="file-text" class="w-3 h-3 mr-2"></i> Nota prot. 465
+                            </a>
+                            <a href="https://agrariomendel.edu.it/allegati/all/88-istanza-rilascio-dichiarazione-di-equipollenza.pdf" target="_blank" class="px-4 py-2 bg-white border border-emerald-200 rounded text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition shadow-sm flex items-center justify-center">
+                                <i data-lucide="download" class="w-3 h-3 mr-2"></i> Istanza Equipollenza
+                            </a>
+                            <a href="https://agrariomendel.edu.it/allegati/all/89-documenti-equipollenza-ii-grado.pdf" target="_blank" class="px-4 py-2 bg-white border border-emerald-200 rounded text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition shadow-sm flex items-center justify-center">
+                                <i data-lucide="paperclip" class="w-3 h-3 mr-2"></i> Documenti II Grado
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -446,13 +582,13 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 py-16 text-slate-400 border-t border-slate-800">
+    <footer class="bg-slate-950 py-16 text-slate-400 border-t border-slate-800 text-sm">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-center md:justify-start space-x-3 mb-16">
-                <div class="bg-emerald-600 p-2 rounded-lg">
-                    <i data-lucide="sprout" class="text-white w-6 h-6"></i>
+            <div class="flex items-center justify-center md:justify-start space-x-3 mb-12">
+                <div class="bg-emerald-600 p-1.5 rounded">
+                    <i data-lucide="sprout" class="text-white w-5 h-5"></i>
                 </div>
-                <span class="font-bold text-2xl tracking-tight text-white uppercase italic">Mendel Serale IDA</span>
+                <span class="font-bold text-xl tracking-tight text-white uppercase italic">Mendel Serale IDA</span>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-sm leading-loose">
@@ -473,25 +609,27 @@
                     <div class="pl-4">
                         <p class="mb-1">Cod. Mecc: MIIS08300X</p>
                         <p class="mb-1">C.F. 92004160153</p>
-                        <p>CUU: UFGZH6</p>
+                        <p>CUU: <span class="text-white font-bold">UFGZH6</span></p>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-12 mt-12 border-t border-slate-800 text-center text-[10px] font-bold tracking-widest uppercase opacity-40">
+            <div class="pt-12 mt-12 border-t border-slate-800 text-center text-xs font-bold tracking-widest uppercase opacity-40">
                 IIS Gregorio Mendel Villa Cortese (MI) &copy; 2026 Tutti i diritti riservati.
             </div>
         </div>
     </footer>
 
     <script>
+        // Init Icons
         lucide.createIcons();
 
+        // Menu Mobile
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('active');
         }
 
-        // FAQ Functionality
+        // FAQ Toggle
         function toggleFaq(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('svg');
@@ -507,6 +645,7 @@
             }
         }
 
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -517,7 +656,7 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Background Slider Logic
+        // Slider
         const slides = document.querySelectorAll('.hero-bg-slide');
         let currentSlide = 0;
 
@@ -527,7 +666,7 @@
             slides[currentSlide].classList.add('active');
         }
 
-        setInterval(nextSlide, 5000); // Change image every 5 seconds
+        setInterval(nextSlide, 5000); 
     </script>
 </body>
 </html>
