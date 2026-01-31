@@ -115,7 +115,7 @@
                     <a href="#organizzazione" class="hover:text-emerald-600 transition-colors text-slate-600">Struttura</a>
                     <a href="#requisiti" class="hover:text-emerald-600 transition-colors text-slate-600">Requisiti</a>
                     <a href="#materie" class="hover:text-emerald-600 transition-colors text-slate-600">Materie</a>
-                    <a href="#info-pratiche" class="hover:text-emerald-600 transition-colors text-slate-600">Orari e Info</a>
+                    <a href="#faq" class="hover:text-emerald-600 transition-colors text-slate-600">FAQ</a>
                     <a href="mailto:ida@agrariomendel.it" class="bg-emerald-600 text-white px-6 py-2 rounded-full hover:bg-emerald-700 transition shadow-md">Contatta Referente</a>
                 </div>
                 <!-- Mobile Button -->
@@ -139,18 +139,23 @@
                 <a href="#organizzazione" onclick="toggleMobileMenu()">Struttura</a>
                 <a href="#requisiti" onclick="toggleMobileMenu()">Requisiti</a>
                 <a href="#materie" onclick="toggleMobileMenu()">Materie</a>
-                <a href="#info-pratiche" onclick="toggleMobileMenu()">Orari</a>
+                <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
                 <a href="mailto:ida@agrariomendel.it" onclick="toggleMobileMenu()" class="text-emerald-600">Contatta Referente</a>
             </div>
         </div>
     </div>
 
-    <!-- Hero Section con Carosello -->
+    <!-- Hero Section con Carosello (8 Immagini) -->
     <section class="hero-section relative min-h-screen flex items-center justify-center pt-20">
         <!-- Background Slides -->
-        <div class="hero-bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1625246333195-5519a120dd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
-        <div class="hero-bg-slide" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
-        <div class="hero-bg-slide" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="hero-bg-slide active" style="background-image: url('1.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('2.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('3.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('4.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('5.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('6.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('7.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('8.jpg');"></div>
         
         <!-- Overlay Scuro -->
         <div class="hero-overlay"></div>
@@ -328,6 +333,76 @@
         </div>
     </section>
 
+    <!-- FAQ Section (RIPRISTINATA) -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="reveal text-3xl font-bold text-center mb-16 uppercase text-slate-900">Domande Frequenti (FAQ)</h2>
+            <div class="space-y-4">
+                <div class="reveal stagger-1 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition" onclick="toggleFaq(this)">
+                        <span class="font-bold text-lg text-slate-800">Le lezioni sono obbligatorie ogni sera?</span>
+                        <i data-lucide="plus" class="text-emerald-600 transition-transform"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="p-6 text-slate-600">No, grazie al Patto Formativo Individuale (PFI) e alla quota online (FAD) l'impegno in aula è flessibile. È richiesta la presenza principalmente per laboratori e verifiche.</p>
+                    </div>
+                </div>
+                
+                <div class="reveal stagger-2 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition" onclick="toggleFaq(this)">
+                        <span class="font-bold text-lg text-slate-800">Quanto costa l'iscrizione?</span>
+                        <i data-lucide="plus" class="text-emerald-600 transition-transform"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="p-6 text-slate-600">Trattandosi di scuola pubblica, i costi sono minimi (tasse ministeriali e contributo d'istituto assicurativo).</p>
+                    </div>
+                </div>
+
+                <div class="reveal stagger-3 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition" onclick="toggleFaq(this)">
+                        <span class="font-bold text-lg text-slate-800">È passato troppo tempo dall'ultima volta che ho studiato...</span>
+                        <i data-lucide="plus" class="text-emerald-600 transition-transform"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="p-6 text-slate-600">Il nostro corpo docente è specializzato nell'educazione degli adulti. Non ci sono pregiudizi: lavoreremo insieme per rispolverare le basi e portarti al traguardo con un metodo pratico.</p>
+                    </div>
+                </div>
+
+                <div class="reveal stagger-1 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition" onclick="toggleFaq(this)">
+                        <span class="font-bold text-lg text-slate-800">Cosa succede se lavoro su turni?</span>
+                        <i data-lucide="plus" class="text-emerald-600 transition-transform"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="p-6 text-slate-600">Attraverso la piattaforma digitale e il dialogo costante con i docenti, supportiamo chi ha turni lavorativi variabili.</p>
+                    </div>
+                </div>
+
+                <div class="reveal stagger-2 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                    <button class="w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition" onclick="toggleFaq(this)">
+                        <span class="font-bold text-lg text-slate-800">Posso iscrivermi se ho già un altro diploma?</span>
+                        <i data-lucide="plus" class="text-emerald-600 transition-transform"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="p-6 text-slate-600">Certamente. Le materie generali già superate ti verranno riconosciute come crediti, permettendoti di concentrarti solo sulle materie tecniche.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Docs Stranieri (Ripristinato) -->
+            <div class="reveal stagger-3 mt-16 p-8 bg-emerald-50 rounded-3xl border border-emerald-100">
+                <h3 class="text-xl font-bold mb-6 flex items-center text-emerald-900">
+                    <i data-lucide="globe" class="mr-3 text-emerald-600"></i> Studenti Stranieri
+                </h3>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://agrariomendel.edu.it/allegati/all/87-nota-prot-n-465-del-27-gennaio-2012.pdf" target="_blank" class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold hover:text-emerald-600 transition shadow-sm text-center">Nota prot. 465</a>
+                    <a href="https://agrariomendel.edu.it/allegati/all/88-istanza-rilascio-dichiarazione-di-equipollenza.pdf" target="_blank" class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold hover:text-emerald-600 transition shadow-sm text-center">Istanza Equipollenza</a>
+                    <a href="https://agrariomendel.edu.it/allegati/all/89-documenti-equipollenza-ii-grado.pdf" target="_blank" class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold hover:text-emerald-600 transition shadow-sm text-center">Documenti II Grado</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Final CTA & Contact -->
     <section class="py-24 bg-emerald-600 text-white text-center px-4">
         <div class="max-w-4xl mx-auto">
@@ -338,7 +413,7 @@
             
             <div class="reveal stagger-2 bg-white p-10 rounded-2xl text-slate-900 shadow-2xl max-w-xl mx-auto">
                 <h3 class="text-xl font-bold mb-6 text-slate-700">Contatta il Referente IDA</h3>
-                <a href="mailto:ida@agrariomendel.it" class="flex items-center justify-center space-x-3 text-2xl font-bold text-emerald-600 hover:text-emerald-800 transition break-all">
+                <a href="mailto:ida@agrariomendel.it" class="flex items-center justify-center space-x-3 text-xl md:text-2xl font-bold text-emerald-600 hover:text-emerald-800 transition break-all">
                     <i data-lucide="mail" class="w-8 h-8 flex-shrink-0"></i>
                     <span>ida@agrariomendel.it</span>
                 </a>
@@ -382,6 +457,22 @@
 
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('active');
+        }
+
+        // FAQ Functionality
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            if (!content) return;
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = 'rotate(45deg)';
+            }
         }
 
         const observer = new IntersectionObserver((entries) => {
